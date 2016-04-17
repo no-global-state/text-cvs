@@ -1,6 +1,4 @@
-
 $(function(){
-
    var text = '';
 
    $('em').hover(function(){
@@ -12,5 +10,4 @@ $(function(){
    }, function(){
        $(this).text(text);
    });
-
 });
