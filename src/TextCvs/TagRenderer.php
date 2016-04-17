@@ -11,18 +11,31 @@
 
 namespace TextCvs;
 
+use Krystal\Form\NodeElement;
+
 final class TagRenderer implements TagRendererInterface
 {
     /**
-     * Wraps into a tag
+     * Creates a tag
      * 
-     * @param string $tag
-     * @param string $text
+     * @param string $name Tag name
+     * @param string $text Inner text
+     * @param array $attrs Optional attributes
      * @return string
      */
-    private function wrap($tag, $text)
+    private function createTag($name, $text, array $attrs = array())
     {
-        return sprintf('<%s>%s</%s>', $tag, $text, $tag);
+        $tag = new NodeElement();
+        $tag->openTag($name);
+
+        if (!empty($attrs)) {
+            $tag->addAttributes($attrs);
+        }
+
+        return $tag->finalize()
+                   ->setText($text)
+                   ->closeTag()
+                   ->render();
     }
 
     /**
@@ -33,7 +46,7 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapInserted($text)
     {
-        return $this->wrap('ins', $text);
+        return $this->createTag('ins', $text);
     }
 
     /**
@@ -44,7 +57,7 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapRemoved($text)
     {
-        return $this->wrap('del', $text);
+        return $this->createTag('del', $text);
     }
 
     /**
@@ -56,6 +69,6 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapChanged($original, $modified)
     {
-        return sprintf('<em data-original="%s">%s</em>', $original, $modified);
+        return $this->createTag('em', $modified, array('data-original' => $original));
     }
 }
