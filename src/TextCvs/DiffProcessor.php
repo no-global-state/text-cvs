@@ -11,6 +11,9 @@
 
 namespace TextCvs;
 
+use Krystal\Text\TextUtils;
+use Krystal\Stdlib\ArrayUtils;
+
 class DiffProcessor
 {
     /**
@@ -36,8 +39,8 @@ class DiffProcessor
      */
     public function __construct($first, $second)
     {
-        $this->first = Utils::explodeText($first);
-        $this->second = Utils::explodeText($second);
+        $this->first = TextUtils::explodeText($first);
+        $this->second = TextUtils::explodeText($second);
     }
 
     /**
@@ -49,7 +52,7 @@ class DiffProcessor
     {
         $result = array();
 
-        foreach (Utils::arrayCombine($this->first, $this->second) as $old => $new) {
+        foreach (ArrayUtils::arrayCombine($this->first, $this->second) as $old => $new) {
             $result[] = $old;
             // Don't add newly modified sentences
             if ($this->isModified($new)) {
