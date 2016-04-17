@@ -1,13 +1,8 @@
 <?php
 
-require(__DIR__.'/vendor/autoload.php');
-
-use TextCvs\DiffProcessor;
-use TextCvs\TagRenderer;
-
 if (isset($_POST['old'], $_POST['new'])) {
-    $parser = new DiffProcessor($_POST['old'], $_POST['new']);
-    $text = $parser->render(new TagRenderer());
+    require(__DIR__.'/vendor/autoload.php');
+    $text = \TextCvs\DiffBuilder::make($_POST['old'], $_POST['new']);
 }
 
 ?>
