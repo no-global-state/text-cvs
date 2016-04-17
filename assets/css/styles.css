@@ -1,0 +1,25 @@
+
+div.container {
+ padding-top: 39px;
+}
+
+textarea {
+ min-height: 390px;
+ resize: vertical;
+}
+
+del, ins {
+ text-decoration: none;
+}
+
+del {
+ background-color: #E07B7B;
+}
+
+ins {
+ background-color: #82E282;
+}
+
+em {
+ background-color: #F9F956;
+}

@@ -1,0 +1,5 @@
+{
+    "require" : {
+        "no-global-state/krystal-framework": "1.3"
+    }
+}
