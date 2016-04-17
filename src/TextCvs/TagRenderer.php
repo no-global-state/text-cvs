@@ -15,6 +15,10 @@ use Krystal\Form\NodeElement;
 
 final class TagRenderer implements TagRendererInterface
 {
+    const PARAM_TAG_INS = 'ins';
+    const PARAM_TAG_REMOVED = 'del';
+    const PARAM_TAG_CHANGED = 'em';
+
     /**
      * Creates a tag
      * 
@@ -46,7 +50,7 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapInserted($text)
     {
-        return $this->createTag('ins', $text);
+        return $this->createTag(self::PARAM_TAG_INS, $text);
     }
 
     /**
@@ -57,7 +61,7 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapRemoved($text)
     {
-        return $this->createTag('del', $text);
+        return $this->createTag(self::PARAM_TAG_REMOVED, $text);
     }
 
     /**
@@ -69,6 +73,6 @@ final class TagRenderer implements TagRendererInterface
      */
     public function wrapChanged($original, $modified)
     {
-        return $this->createTag('em', $modified, array('data-original' => $original));
+        return $this->createTag(self::PARAM_TAG_CHANGED, $modified, array('data-original' => $original));
     }
 }
