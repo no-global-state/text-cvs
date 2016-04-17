@@ -93,7 +93,7 @@ class DiffProcessor
      * @param string $sentence
      * @return boolean
      */
-    private function isModified($sentence)
+    public function isModified($sentence)
     {
         return $this->getModified($sentence) !== false;
     }
@@ -104,7 +104,7 @@ class DiffProcessor
      * @param string $sentence
      * @return boolean
      */
-    private function isRemoved($sentence)
+    public function isRemoved($sentence)
     {
         return in_array($sentence, $this->first) && !in_array($sentence, $this->second);
     }
@@ -115,7 +115,7 @@ class DiffProcessor
      * @param string $sentence
      * @return boolean
      */
-    private function isNew($sentence)
+    public function isNew($sentence)
     {
         return !in_array($sentence, $this->first) && in_array($sentence, $this->second);
     }
