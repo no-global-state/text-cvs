@@ -14,7 +14,7 @@ namespace TextCvs;
 use Krystal\Text\TextUtils;
 use Krystal\Stdlib\ArrayUtils;
 
-class DiffProcessor implements DiffProcessorInterface
+final class DiffProcessor implements DiffProcessorInterface
 {
     /**
      * First collection of sentences
