@@ -48,7 +48,7 @@ class DiffProcessor
      * 
      * @return array
      */
-    private function getResult()
+    private function createResult()
     {
         $result = array();
 
@@ -153,7 +153,7 @@ class DiffProcessor
     {
         $text = '';
 
-        foreach ($this->getResult() as $sentence) {
+        foreach ($this->createResult() as $sentence) {
             // Save a copy
             $target = $sentence;
 
