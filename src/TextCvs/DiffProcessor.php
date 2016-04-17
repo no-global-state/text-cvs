@@ -1,15 +1,28 @@
 <?php
 
+/**
+ * This file is part of the TextCvs Tool
+ * 
+ * Copyright (c) No Global State Lab
+ * 
+ * For the full copyright and license information, please view
+ * the license file that was distributed with this source code.
+ */
+
 namespace TextCvs;
 
 class DiffProcessor
 {
     /**
+     * First collection of sentences
+     * 
      * @var array
      */
     private $first;
 
     /**
+     * Second collection of sentences
+     * 
      * @var array
      */
     private $second;
@@ -17,8 +30,8 @@ class DiffProcessor
     /**
      * State initialization
      * 
-     * @param string $first
-     * @param string $second
+     * @param string $first First text version
+     * @param string $second Second text version
      * @return void
      */
     public function __construct($first, $second)
