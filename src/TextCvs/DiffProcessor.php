@@ -121,55 +121,32 @@ class DiffProcessor
     }
 
     /**
-     * Wraps into a tag
-     * 
-     * @param string $tag
-     * @param string $text
-     * @return string
-     */
-    private function wrap($tag, $text)
-    {
-        return sprintf('<%s>%s</%s>', $tag, $text, $tag);
-    }
-
-    /**
-     * Wraps changed tag
-     * 
-     * @param string $original
-     * @param string $modified
-     * @return string
-     */
-    private function wrapChanged($original, $modified)
-    {
-        return sprintf('<em data-original="%s">%s</em>', $original, $modified);
-    }
-    
-    /**
      * Renders result
      * 
+     * @param \TextCvs\TagRendererInterface $render
      * @return string
      */
-    public function render()
+    public function render(TagRendererInterface $render)
     {
-        $text = '';
+        $text = null;
 
         foreach ($this->createResult() as $sentence) {
             // Save a copy
             $target = $sentence;
 
             if ($this->isRemoved($sentence)) {
-                $sentence = $this->wrap('del', $sentence);
+                $sentence = $render->wrapRemoved($sentence);
             }
 
             if ($this->isNew($sentence)) {
-                $sentence = $this->wrap('ins', $sentence);
+                $sentence = $render->wrapInserted($sentence);
             }
 
             $modified = $this->getModified($target);
 
             // If not false, then it exists
             if ($modified !== false) {
-                $sentence = $this->wrapChanged($target, $modified);
+                $sentence = $render->wrapChanged($target, $modified);
             }
 
             $text .= $sentence;
