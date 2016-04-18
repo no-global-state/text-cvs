@@ -12,4 +12,13 @@ class DiffProcessorTest extends \PHPUnit_Framework_TestCase
         $processor = new DiffProcessor($old, $new);
         $this->assertTrue($processor->isNew(' The new one.'));
     }
+
+    public function testCanRemoveSentence()
+    {
+        $old = 'The first. The second.';
+        $new = 'The first.';
+
+        $processor = new DiffProcessor($old, $new);
+        $this->assertTrue($processor->isRemoved(' The second.'));
+    }
 }
