@@ -21,4 +21,13 @@ class DiffProcessorTest extends \PHPUnit_Framework_TestCase
         $processor = new DiffProcessor($old, $new);
         $this->assertTrue($processor->isRemoved(' The second.'));
     }
+
+    public function testCanDetectChanges()
+    {
+        $old = 'The first. The second.';
+        $new = 'The first. The second one.';
+
+        $processor = new DiffProcessor($old, $new);
+        $this->assertTrue($processor->isModified(' The second one.'));
+    }
 }
