@@ -5,6 +5,7 @@ CHANGELOG
 ---
 
  * Improved internals
+ * Made `isNew()`, `isRemoved()`, `isModified()` public
  * Made composer-compliant structure
  * Separated tag rendering from processing
  * Switched to framework tools, instead of own ones
